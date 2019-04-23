@@ -298,3 +298,62 @@ void main()
 						printf("Cannot open the file");
 						getch();
 						exit(1);
+						fseek(fp,0,SEEK_END);
+					 tsz=ftell(fp);
+					 n=(int)(tsz/sizeof(alka));
+					 for(i=0;i<(n-1);i++)
+					 {
+						for(a=i+1;a<n;a++)
+						{
+						fseek(fp,i*sizeof(alka),SEEK_SET);
+						fread(&p,sizeof(alka),1,fp);
+						fseek(fp,a*sizeof(alka),SEEK_SET);
+						fread(&q,sizeof(alka),1,fp);
+						if(strcmp(p.name,q.name)>0)
+							{
+							fseek(fp,i*sizeof(alka),SEEK_SET);
+							fwrite(&q,sizeof(alka),1,fp);
+							fseek(fp,a*sizeof(alka),SEEK_SET); fflush(stdin);
+							fwrite(&p,sizeof(alka),1,fp);
+							}
+						}
+					}
+					rewind(fp);
+					clrscr();
+					mainscreen();
+					gotoxy(3,20);
+					textcolor(11);
+					cprintf("Ready to Display the patient records according to alphabatecal order of names");
+					gotoxy(27,25);textcolor(3);
+					cprintf("Press");textcolor(15+128);
+					cprintf(" `Enter' ");    textcolor(3);
+					cprintf("to continue");
+					getch();
+					while(fread(&p,sizeof(alka),1,fp))
+					{
+					clrscr();
+					mainscreen();
+					print();
+					gotoxy(17,10);  textcolor(7);
+					cprintf("DISPLAYING-RECORD-ACCORDING-TO-PATIENTS-NAMES");
+					gotoxy(16,11);textcolor(15);
+					cprintf("---------------------------------------------");
+					edit1();
+
+					textcolor(11);
+					gotoxy(20,46);
+					cprintf("Press");textcolor(15+128);
+					cprintf(" `Enter'"); textcolor(11);
+					cprintf(" for next and `r' to quit: ");
+					scanf("%c",&c);
+
+					if(c=='r')
+					{
+					goto label6;
+
+					}
+					gotoxy(60,46);
+					getch();
+
+				}
+				clrscr();
