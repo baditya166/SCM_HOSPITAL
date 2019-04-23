@@ -251,4 +251,271 @@ void main()
 				}
 
 				if((f1=fopen("delete","wb"))==NULL)
+				{goto label6;
+
+					}
+					gotoxy(60,46);
+					getch();
+
+				}
+				clrscr();
+				mainscreen();
+				textcolor(11);
+				gotoxy(30,25);
+				cprintf("::No Further Records::");   gotoxy(40,30);
+				getch();
+				fclose(fp);
+				break;
+				}
+			case '5':
 				{
+				clrscr();
+				mainscreen();
+				 goto label1;
+				 }
+			case '2':
+				{
+				clrscr();
+				mainscreen();
+				if((fp=fopen(fn1,"rb"))==NULL)
+					      {
+						printf("Cannot open the file");
+						getch();
+						exit(1);
+					      }
+				gotoxy(15,20);
+				textcolor(2);
+				cprintf("Ready to Display records of Emergency Patients");
+				gotoxy(27,25);textcolor(3);
+				cprintf("Press");textcolor(15+128);
+				cprintf(" `Enter' ");    textcolor(3);
+				cprintf("to continue");
+				getch();
+				while(fread(&p,sizeof(alka),1,fp))
+				{
+					if(strcmp(p.category,"Emergency Patient")==NULL)
+					{
+					clrscr();
+					mainscreen();
+					print();
+					gotoxy(17,10);  textcolor(7);
+					cprintf("::DISPLAYING-RECORDS-OF-EMERGENCY-PATIENTS::");
+					gotoxy(16,11);textcolor(15);
+					cprintf("---------------------------------------------");
+					edit1();
+
+					textcolor(11);
+					gotoxy(20,45);
+					cprintf("Press");textcolor(15+128);
+					cprintf(" `Enter'"); textcolor(11);
+					cprintf(" for next and `r' to quit: ");
+					scanf("%c",&c);
+
+					if(c=='r')
+					{
+					goto label6;
+					}
+					gotoxy(60,46);
+					getch();
+					}
+				}
+				clrscr();
+				mainscreen();
+				textcolor(11);
+				gotoxy(30,25);
+				cprintf("::No Further Records::");   gotoxy(40,30);
+				getch();
+				fclose(fp);
+				break;
+				}
+			case '3':
+				{
+				clrscr();
+				mainscreen();
+				if((fp=fopen(fn1,"rb"))==NULL)
+					      {
+						printf("Cannot open the file");
+						getch();
+						exit(1);
+					      }
+				gotoxy(15,20);
+				textcolor(2);
+				cprintf("Ready to Display records of O.P.D Patients");
+				gotoxy(27,25);textcolor(3);
+				cprintf("Press");textcolor(15+128);
+				cprintf(" `Enter' ");    textcolor(3);
+				cprintf("to continue");
+				getch();
+				while(fread(&p,sizeof(alka),1,fp))
+				{
+					if(strcmp(p.category,"O.P.D.Patient")==NULL)
+					{
+					clrscr();
+					mainscreen();
+					print();
+					gotoxy(17,10);  textcolor(7);
+					cprintf("::DISPLAYING-RECORDS-OF-OPD-PATIENTS::");
+					gotoxy(16,11);textcolor(15);
+					cprintf("---------------------------------------------");
+					edit1();
+						textcolor(11);
+					gotoxy(20,46);
+					cprintf("Press");textcolor(15+128);
+					cprintf(" `Enter'"); textcolor(11);
+					cprintf(" for next and `r' to quit: ");
+					scanf("%c",&c);
+
+					if(c=='r')
+					{
+					goto label6;
+					}
+					gotoxy(60,46);
+					getch();
+					}
+				}
+				clrscr();
+				mainscreen();
+				textcolor(11);
+				gotoxy(30,25);
+				cprintf("::No Further Records::");   gotoxy(40,30);
+				getch();
+				fclose(fp);
+				break;
+				}
+		case '4':
+				{
+				clrscr();
+				mainscreen();
+				if((fp=fopen(fn1,"rb"))==NULL)
+					      {
+						printf("Cannot open the file");
+						getch();
+						exit(1);
+					      }
+				label8:
+				gotoxy(27,20);
+				textcolor(3);
+				cprintf("Enter the `Date' of a paricular day(yyyy/mm/dd)");
+				gotoxy(35,25);fflush(stdin);
+				scanf("%s",string);
+				if((string[4]!='/')||(string[7]!='/')||(string[5]>'3')||(string[8]>'3'))
+				{
+				clrscr();
+				mainscreen();
+				gotoxy(23,13);textcolor(4+128);
+				cprintf("Wrong Entry");
+				goto label8;
+				}
+			       //	getch();
+				while(fread(&p,sizeof(alka),1,fp))
+				{
+					if(strcmp(string,p.date)==NULL)
+					{
+					clrscr();
+					mainscreen();
+					print();
+					gotoxy(17,10);  textcolor(7);
+					cprintf("::DISPLAYING-RECORDS-OF-");
+					cprintf("DATE >%s",p.date);
+					gotoxy(16,11);textcolor(15);
+					cprintf("---------------------------------------------");
+					edit1();
+
+					textcolor(11);
+					gotoxy(20,46);
+					cprintf("Press");textcolor(15+128);
+					cprintf(" `Enter'"); textcolor(11);
+					cprintf(" for next and `r' to quit: ");
+					scanf("%c",&c);
+
+					if(c=='r')
+					{
+					goto label6;
+					}
+					gotoxy(60,46);
+					getch();
+					}
+				}
+				clrscr();
+				mainscreen();
+				textcolor(11);
+				gotoxy(30,25);
+				cprintf("::No Further Records::");   gotoxy(40,30);
+				getch();
+				fclose(fp);
+				break;
+				}
+
+			default:
+				{
+				clrscr();
+				mainscreen();
+				textcolor(12+128);gotoxy(22,11);
+				cprintf("Wrong choice");gotoxy(22,13);textcolor(15);
+				 cprintf("Retype choice");
+				goto label6;
+				}
+			}
+		}break;
+
+
+
+
+
+		default:
+		       {
+			clrscr();
+			mainscreen();
+			textcolor(12+128);gotoxy(22,11);
+			cprintf("Wrong choice");gotoxy(22,13);textcolor(15);
+			 cprintf("Retype choice");
+			goto label1;
+			}
+
+	}
+	clrscr();
+	mainscreen();
+	goto label1;
+}
+void newrecord(int l)
+{
+	char q;
+	p.sn=l;
+	displaydepartment();
+	gotoxy(5,14);textcolor(10);
+	cprintf("Record of patient no:");
+	printf(" %d",l);
+	gotoxy(5,17);
+	cprintf("Name:");
+
+	gotoxy(5,20);
+	cprintf("Address:");
+
+	gotoxy(5,23);
+	cprintf("Age: ");
+
+	gotoxy(5,26);
+	cprintf("Sex(m/f): ");
+
+	gotoxy(5,29);
+	cprintf("Disease Descrp:");
+	gotoxy(9,30);
+	cprintf("(In Short)");
+
+	gotoxy(5,33);
+	cprintf("Reff. Specialist no:");
+	fflush(stdin);gotoxy(10,17);
+	scanf("%[^\n]",p.name);
+	p.name[0]=toupper(p.name[0]);
+	gotoxy(14,20);
+	fflush(stdin);
+	scanf("%[^\n]",p.address);
+	gotoxy(10,23);
+	fflush(stdin);
+	scanf("%d",&p.age);
+	gotoxy(15,26);
+	fflush(stdin);
+	scanf("%c",&p.ch);
+	fflush(stdin);gotoxy(22,29);
+	scanf("%[^\n]",p.disease);
+}
