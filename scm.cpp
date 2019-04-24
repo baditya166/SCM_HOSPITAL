@@ -517,5 +517,5 @@ void newrecord(int l)
 	fflush(stdin);
 	scanf("%c",&p.ch);
 	fflush(stdin);gotoxy(22,29);
-	scanf("%[^\n]",p.disease);
+scanf("%[^\n]",p.disease);
 }
