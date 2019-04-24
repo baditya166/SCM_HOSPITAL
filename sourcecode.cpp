@@ -1,4 +1,4 @@
-#include<stdio.h>
+ #include<stdio.h>
 #include<conio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -59,7 +59,7 @@ void main()
 	textcolor(15);
 	lowvideo();gotoxy(22,15);textcolor(14);
 	cprintf("Enter the corresponding no");gotoxy(22,19);textcolor(10);
-	cprintf("1.Add new patient record");gotoxy(22,21);
+	cprintf("1.Add anewpatient record");gotoxy(22,21);
 	cprintf("2.Search  or edit record");gotoxy(22,23);
 	cprintf("3.Know the records of patients");gotoxy(22,25);
 	cprintf("4.Delete the records");gotoxy(22,27);
