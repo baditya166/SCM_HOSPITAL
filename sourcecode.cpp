@@ -356,6 +356,7 @@ void main()
 					getch();
 
 				}
-				clrscr();
+				clrscr();amit10
+				hi this is project hospital
 				hello this is devesh scm project
-					hi this is is ssi ss 
+					hi this is is ssi ss  master
